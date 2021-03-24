@@ -28,7 +28,8 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private JTextArea areaTexto;
     private int tipoOperacion;
     private static ArrayList<String> operandos = new ArrayList<>();
-    private static String texto = "";
+    private static String op1 = "";
+    private static String op2 = "";
 
     // Constructor
     public PanelPrincipal() {
@@ -73,11 +74,11 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     || !((JButton) o).getText().equals("C")
                     || !((JButton) o).getText().equals("=")) {
 
-                texto += ((JButton) o).getText();
-                areaTexto.setText(texto);
-                System.out.println("TT " + texto);
+                op1 += ((JButton) o).getText();
+                areaTexto.setText(op1);
+                System.out.println("TT " + op1);
 //                areaTexto.setText(((JButton) o).getText());
-                operandos.add(0, texto);
+                operandos.add(0, op1);
             } else{
                 switch (((JButton) o).getText()) {
                 case "+":
