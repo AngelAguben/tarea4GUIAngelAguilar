@@ -29,6 +29,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private int tipoOperacion;
     private static ArrayList<String> operandos = new ArrayList<>();
     private static String op1 = "";
+    private static String simbo = "";
     private static String op2 = "";
 
     // Constructor
@@ -65,28 +66,51 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         // Si es un botón
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
-            
+
             // Si los botones son números
-            if (!((JButton) o).getText().equals("+")
+            if (((JButton) o).getText().equals("+")
+                    || ((JButton) o).getText().equals("-")
+                    || ((JButton) o).getText().equals("/")
+                    || ((JButton) o).getText().equals("*")
+                    || ((JButton) o).getText().equals("C")
+                    || ((JButton) o).getText().equals("=")) {
+
+                simbo = ((JButton) o).getText();
+                areaTexto.setText(op1 + simbo);
+                operandos.add(1, op1);
+                System.out.println("OP: " + simbo);
+                
+                
+
+            } else if (!((JButton) o).getText().equals("+")
                     || !((JButton) o).getText().equals("-")
                     || !((JButton) o).getText().equals("/")
                     || !((JButton) o).getText().equals("*")
                     || !((JButton) o).getText().equals("C")
                     || !((JButton) o).getText().equals("=")) {
-
                 op1 += ((JButton) o).getText();
                 areaTexto.setText(op1);
-                System.out.println("TT " + op1);
-//                areaTexto.setText(((JButton) o).getText());
                 operandos.add(0, op1);
-            } else{
+                System.out.println("TT 1: " + op1);
+                
+            } else {
                 switch (((JButton) o).getText()) {
                 case "+":
-//                    texto
-            }
+                    tipoOperacion = Integer.parseInt(op1)+Integer.parseInt(op2);
+                    System.out.println(tipoOperacion);
+                case "-":
+                    tipoOperacion = Integer.parseInt(op1)-Integer.parseInt(op2);
+                    System.out.println(tipoOperacion);
+                case "/":
+                    tipoOperacion = Integer.parseInt(op1)%Integer.parseInt(op2);
+                    System.out.println(tipoOperacion);
+                default:
+                    op2 += ((JButton) o).getText();
+                    areaTexto.setText(op2);
+                    System.out.println("TT 2: " + op2);
+                }
             }
 
-            
         }
 
 //        for (String operando : operandos) {
