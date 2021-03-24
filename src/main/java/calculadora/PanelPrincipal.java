@@ -77,14 +77,16 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 
                     if(((JButton) o).getText().equals("C")) {
                         op1 = "";
-                        simbo="";
+                        simbo = "";
                         op2 = "";
                         areaTexto.setText(op1);
+//                    }else if(((JButton) o).getText().equals("=") && !op2.isEmpty()){
+                        
                     }else{
-                    simbo = ((JButton) o).getText();
-                    areaTexto.setText(op1 + simbo);
-                    operandos.add(1, op1);
-                    System.out.println("OP: " + simbo);
+                        simbo = ((JButton) o).getText();
+                        areaTexto.setText(op1 + simbo);
+                        operandos.add(1, op1);
+                        System.out.println("OP: " + simbo);
                     }
             // Si los botones son números
             } else if (!((JButton) o).getText().equals("+")
@@ -93,13 +95,19 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     || !((JButton) o).getText().equals("*")
                     || !((JButton) o).getText().equals("C")
                     || !((JButton) o).getText().equals("=")) {
-                op1 += ((JButton) o).getText();
-                areaTexto.setText(op1);
-                operandos.add(0, op1);
-                System.out.println("TT 1: " + op1);
-                
-            } else {
+                if(simbo.isEmpty()){
+                    op1 += ((JButton) o).getText();
+                    areaTexto.setText(op1);
+                    operandos.add(0, op1);
+                    System.out.println("TT 1: " + op1);
+                } else{
+                    op2 += ((JButton) o).getText();
+                    areaTexto.setText(op2);
+                    System.out.println("TT 2: " + op2);
+                }
 
+            } else {
+                
             }
             if(!op2.isEmpty()){
             switch (simbo) {
@@ -111,12 +119,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     System.out.println(tipoOperacion);
                 case "/":
                     tipoOperacion = Integer.parseInt(op1)%Integer.parseInt(op2);
-                    System.out.println(tipoOperacion);
-                default:
-                    op2 += ((JButton) o).getText();
-                    areaTexto.setText(op2);
-                    System.out.println("TT 2: " + op2);
-
+                    System.out.println(tipoOperacion);                    
                 }
             }
         }
