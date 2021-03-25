@@ -13,7 +13,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -26,8 +25,8 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     // Atributos de la clase (privados)
     private PanelBotones botonera;
     private JTextArea areaTexto;
-    private double tipoOperacion;
-//    private static ArrayList<String> operandos = new ArrayList<>();
+    private int tipoOperacion;
+    private static double tipoOperacionDecimales = 0;
     // Aquí guardará el primer operador antes del símbolo
     private static String op1 = "";
     // Aquí guardará el símbolo y el simboAux guardará todo menos el = para 
@@ -118,22 +117,37 @@ public class PanelPrincipal extends JPanel implements ActionListener {
             if (!op2.isEmpty() && simbo.equals("=")) {
                 // Haremos un switch del simboAux
                 switch (simboAux) {
+                    // SUMA
                     case "+":
                         tipoOperacion = Integer.parseInt(op1) + Integer.parseInt(op2);
                         break;
+                    //RESTA
                     case "-":
                         tipoOperacion = Integer.parseInt(op1) - Integer.parseInt(op2);
                         break;
+                    // DIVISIÓN
                     case "/":
-                        tipoOperacion = Double.parseDouble(op1) / Double.parseDouble(op2);
+                        tipoOperacionDecimales = Double.parseDouble(op1) / Double.parseDouble(op2);
                         break;
+                    // MULTIPLICACIÓN
                     case "*":
                         tipoOperacion = Integer.parseInt(op1) * Integer.parseInt(op2);
                         break;
                 }
                 // Una vez terminado el switch hago que me lo imprima todo
-                System.out.println("Resultado: " + tipoOperacion);
-                areaTexto.setText(tipoOperacion + "");
+                // Ahora aquí divido entre ver el resultado con decimales o sin 
+                // decimales
+                
+                // Si tipoOperacionDecimales es mayor a 0 que es su valor por defecto
+                if (tipoOperacionDecimales > 0) {
+                    // Imprimirá su número con decimales
+                    System.out.println("Resultado: " + tipoOperacionDecimales);
+                    areaTexto.setText(tipoOperacionDecimales + "");
+                // Si no, mostrará el resultado sin decimales para que sea más estético
+                } else {
+                    System.out.println("Resultado: " + tipoOperacion);
+                    areaTexto.setText(tipoOperacion + "");
+                }
                 // Y luego limpiará todo para volver a hacer otra operacion
                 op1 = "";
                 simbo = "";
