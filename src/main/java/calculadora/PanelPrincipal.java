@@ -70,7 +70,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
 
-            // Si los botones son operadores
+            // Si los botones son simbolos
             if (((JButton) o).getText().equals("+")
                     || ((JButton) o).getText().equals("-")
                     || ((JButton) o).getText().equals("/")
@@ -78,40 +78,39 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     || ((JButton) o).getText().equals("C")
                     || ((JButton) o).getText().equals("=")) {
 
+                // Si es una C
                 if (((JButton) o).getText().equals("C")) {
+                    // Borrará todo lo que haya guardado la calculadora
                     op1 = "";
                     simbo = "";
                     op2 = "";
                     areaTexto.setText(op1);
-//                    }else if(((JButton) o).getText().equals("=") && !op2.isEmpty()){
-
                 } else {
+                    // Si no, guardará la información del simbolos
                     simbo = ((JButton) o).getText();
                     areaTexto.setText(op1 + simbo);
-//                    operandos.add(1, op1);
-                    System.out.println("OP: " + simbo);
+                    System.out.println("Simbolo: " + simbo);
                     // Si el simbolo no es = ...
                     if (!simbo.equals("=")) {
-                        // simboAux guardará el operador
+                        // simboAux guardará el simbolo
                         simboAux = simbo;
                     }
                 }
                 // Si los botones son números
-            } else if (!((JButton) o).getText().equals("+")
-                    || !((JButton) o).getText().equals("-")
-                    || !((JButton) o).getText().equals("/")
-                    || !((JButton) o).getText().equals("*")
-                    || !((JButton) o).getText().equals("C")
-                    || !((JButton) o).getText().equals("=")) {
+            } else {
+                // Si el símbolo está vacío...
                 if (simbo.isEmpty()) {
+                    // Guardará el primer operador
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
 //                    operandos.add(0, op1);
-                    System.out.println("TT 1: " + op1);
+                    System.out.println("Operador 1: " + op1);
+                    // Si el simbolo contiene un simbolo, significará que es el 
+                    // operador 2
                 } else {
                     op2 += ((JButton) o).getText();
                     areaTexto.setText(op2);
-                    System.out.println("TT 2: " + op2);
+                    System.out.println("Operador 2: " + op2);
                 }
 
             }
@@ -133,7 +132,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                         break;
                 }
                 // Una vez terminado el switch hago que me lo imprima todo
-                System.out.println(tipoOperacion);
+                System.out.println("Resultado: " + tipoOperacion);
                 areaTexto.setText(tipoOperacion + "");
                 // Y luego limpiará todo para volver a hacer otra operacion
                 op1 = "";
