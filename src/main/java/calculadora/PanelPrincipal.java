@@ -27,7 +27,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private PanelBotones botonera;
     private JTextArea areaTexto;
     private int tipoOperacion;
-    private static ArrayList<String> operandos = new ArrayList<>();
+//    private static ArrayList<String> operandos = new ArrayList<>();
     private static String op1 = "";
     private static String simbo = "", simboAux = "";
     private static String op2 = "";
@@ -84,9 +84,11 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 } else {
                     simbo = ((JButton) o).getText();
                     areaTexto.setText(op1 + simbo);
-                    operandos.add(1, op1);
+//                    operandos.add(1, op1);
                     System.out.println("OP: " + simbo);
+                    // Si el simbolo no es = ...
                     if (!simbo.equals("=")) {
+                        // simboAux guardará el operador
                         simboAux = simbo;
                     }
                 }
@@ -100,7 +102,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 if (simbo.isEmpty()) {
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
-                    operandos.add(0, op1);
+//                    operandos.add(0, op1);
                     System.out.println("TT 1: " + op1);
                 } else {
                     op2 += ((JButton) o).getText();
