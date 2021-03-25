@@ -26,10 +26,14 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     // Atributos de la clase (privados)
     private PanelBotones botonera;
     private JTextArea areaTexto;
-    private int tipoOperacion;
+    private double tipoOperacion;
 //    private static ArrayList<String> operandos = new ArrayList<>();
+    // Aquí guardará el primer operador antes del símbolo
     private static String op1 = "";
+    // Aquí guardará el símbolo y el simboAux guardará todo menos el = para 
+    // poder saber que operaciones tengo que realizar
     private static String simbo = "", simboAux = "";
+    // Aquí guardará el segundo operador después del símbolo
     private static String op2 = "";
 
     // Constructor
@@ -113,6 +117,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
             }
             // Si op2 no está vacío y el simbolo es = ...
             if (!op2.isEmpty() && simbo.equals("=")) {
+                // Haremos un switch del simboAux
                 switch (simboAux) {
                     case "+":
                         tipoOperacion = Integer.parseInt(op1) + Integer.parseInt(op2);
@@ -121,12 +126,13 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                         tipoOperacion = Integer.parseInt(op1) - Integer.parseInt(op2);
                         break;
                     case "/":
-                        tipoOperacion = Integer.parseInt(op1) % Integer.parseInt(op2);
+                        tipoOperacion = Double.parseDouble(op1) / Double.parseDouble(op2);
                         break;
                     case "*":
                         tipoOperacion = Integer.parseInt(op1) * Integer.parseInt(op2);
                         break;
                 }
+                // Una vez terminado el switch hago que me lo imprima todo
                 System.out.println(tipoOperacion);
                 areaTexto.setText(tipoOperacion + "");
                 // Y luego limpiará todo para volver a hacer otra operacion
