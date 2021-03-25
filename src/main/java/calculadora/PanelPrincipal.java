@@ -29,7 +29,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private int tipoOperacion;
     private static ArrayList<String> operandos = new ArrayList<>();
     private static String op1 = "";
-    private static String simbo = "";
+    private static String simbo = "", simboAux = "";
     private static String op2 = "";
 
     // Constructor
@@ -55,7 +55,6 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         for (JButton boton : this.botonera.getgrupoBotones()) {
             boton.addActionListener(this);
         }
-
     }
 
     @Override
@@ -87,6 +86,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     areaTexto.setText(op1 + simbo);
                     operandos.add(1, op1);
                     System.out.println("OP: " + simbo);
+                    if (!simbo.equals("=")) {
+                        simboAux = simbo;
+                    }
                 }
                 // Si los botones son números
             } else if (!((JButton) o).getText().equals("+")
@@ -106,24 +108,29 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     System.out.println("TT 2: " + op2);
                 }
 
-            } else {
-
             }
-            if (!op2.isEmpty()) {
-                switch (simbo) {
+            // Si op2 no está vacío y el simbolo es = ...
+            if (!op2.isEmpty() && simbo.equals("=")) {
+                switch (simboAux) {
                     case "+":
                         tipoOperacion = Integer.parseInt(op1) + Integer.parseInt(op2);
-                        System.out.println(tipoOperacion);
+                        break;
                     case "-":
                         tipoOperacion = Integer.parseInt(op1) - Integer.parseInt(op2);
-                        System.out.println(tipoOperacion);
+                        break;
                     case "/":
                         tipoOperacion = Integer.parseInt(op1) % Integer.parseInt(op2);
-                        System.out.println(tipoOperacion);
+                        break;
                     case "*":
                         tipoOperacion = Integer.parseInt(op1) * Integer.parseInt(op2);
-                        System.out.println(tipoOperacion);
+                        break;
                 }
+                System.out.println(tipoOperacion);
+                areaTexto.setText(tipoOperacion + "");
+                // Y luego limpiará todo para volver a hacer otra operacion
+                op1 = "";
+                simbo = "";
+                op2 = "";
             }
         }
 
