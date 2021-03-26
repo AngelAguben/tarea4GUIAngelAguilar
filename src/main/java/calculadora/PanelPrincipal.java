@@ -66,6 +66,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         // Se obtiene el objeto que desencadena el evento
         Object o = ae.getSource();
         // Si es un botón
+//        try{
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
 
@@ -83,7 +84,15 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     op1 = "";
                     simbo = "";
                     op2 = "";
+                    tipoOperacionDecimales = 0;
+                    tipoOperacion = 0;
                     areaTexto.setText(op1);
+                } else if (((JButton) o).getText().equals("-") && op1.isEmpty()) {
+                    // Guardará el primer operador
+                    op1 += ((JButton) o).getText();
+                    areaTexto.setText(op1);
+                    System.out.println("Operador 1: " + op1);
+
                 } else {
                     // Si no, guardará la información del simbolos
                     simbo = ((JButton) o).getText();
@@ -102,7 +111,6 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     // Guardará el primer operador
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
-//                    operandos.add(0, op1);
                     System.out.println("Operador 1: " + op1);
                     // Si el simbolo contiene un simbolo, significará que es el 
                     // operador 2
@@ -133,17 +141,20 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     case "*":
                         tipoOperacion = Integer.parseInt(op1) * Integer.parseInt(op2);
                         break;
+                    default:
+                        tipoOperacion= Integer.parseInt(op1);
+                        break;
                 }
                 // Una vez terminado el switch hago que me lo imprima todo
                 // Ahora aquí divido entre ver el resultado con decimales o sin 
                 // decimales
-                
+
                 // Si tipoOperacionDecimales es mayor a 0 que es su valor por defecto
                 if (tipoOperacionDecimales > 0) {
                     // Imprimirá su número con decimales
                     System.out.println("Resultado: " + tipoOperacionDecimales);
                     areaTexto.setText(tipoOperacionDecimales + "");
-                // Si no, mostrará el resultado sin decimales para que sea más estético
+                    // Si no, mostrará el resultado sin decimales para que sea más estético
                 } else {
                     System.out.println("Resultado: " + tipoOperacion);
                     areaTexto.setText(tipoOperacion + "");
@@ -152,8 +163,13 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 op1 = "";
                 simbo = "";
                 op2 = "";
+                tipoOperacionDecimales = 0;
+                tipoOperacion = 0;
             }
+        }
+//        } catch(){
+            
         }
 
     }
-}
+//}
