@@ -146,6 +146,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     case "*":
                         tipoOperacion = Integer.parseInt(op1) * Integer.parseInt(op2);
                         break;
+                    // IGUAL
                     default:
                         tipoOperacion= Integer.parseInt(op1);
                         break;
@@ -159,7 +160,13 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     // Imprimirá su número con decimales
                     System.out.println("Resultado: " + tipoOperacionDecimales);
                     areaTexto.setText(tipoOperacionDecimales + "");
-                    // Si no, mostrará el resultado sin decimales para que sea más estético
+                // Si la división sale un número menor a 0 será porque algún 
+                // número es negativo y lo tendremos que avisar con el SYNTAX ERROR
+                }else if(tipoOperacionDecimales <= 0){
+                    areaTexto.setText("SYNTAX ERROR");
+                    System.out.println("SYNTAX ERROR");
+                // Si no, mostrará el resultado sin decimales para que sea 
+                // más estético
                 } else {
                     System.out.println("Resultado: " + tipoOperacion);
                     areaTexto.setText(tipoOperacion + "");
