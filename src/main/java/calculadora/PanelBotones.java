@@ -61,6 +61,6 @@ public class PanelBotones extends JPanel {
         grupoBotones[10].setEnabled(true);
         grupoBotones[12].setEnabled(true);
         grupoBotones[13].setEnabled(true);
-        grupoBotones[14].setEnabled(false);
+        grupoBotones[14].setEnabled(true);
     }
 }
