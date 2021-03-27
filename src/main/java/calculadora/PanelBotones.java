@@ -36,7 +36,7 @@ public class PanelBotones extends JPanel {
         grupoBotones[14] = new JButton("=");
         grupoBotones[15] = new JButton("C");
 
-// Establecemos el layout
+        // Establecemos el layout
         this.setLayout(new GridLayout(4, 4));
 
         for (JButton boton : grupoBotones) {
@@ -48,15 +48,19 @@ public class PanelBotones extends JPanel {
         return grupoBotones;
     }
 
+    // Deshabilitará los botones "+, *, / y ="
     public void deshabilitarBotones() {
         grupoBotones[10].setEnabled(false);
         grupoBotones[12].setEnabled(false);
         grupoBotones[13].setEnabled(false);
+        grupoBotones[14].setEnabled(false);
     }
 
+    // Habilitará los botones "+, *, / y ="
     public void habilitarBotones() {
         grupoBotones[10].setEnabled(true);
         grupoBotones[12].setEnabled(true);
         grupoBotones[13].setEnabled(true);
+        grupoBotones[14].setEnabled(false);
     }
 }

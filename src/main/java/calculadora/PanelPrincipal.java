@@ -27,12 +27,13 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private JTextArea areaTexto;
     private int tipoOperacion;
     private static double tipoOperacionDecimales = 0;
-    // Aquí guardará el primer operador antes del símbolo
+    // Suponiendo que tenemos 5 + 1 veremos donde se guarda cada uno
+    // Aquí guardará el primer operador antes del símbolo (5)
     private static String op1 = "";
     // Aquí guardará el símbolo y el simboAux guardará todo menos el = para 
-    // poder saber que operaciones tengo que realizar
+    // poder saber que operaciones tengo que realizar (+)
     private static String simbo = "", simboAux = "";
-    // Aquí guardará el segundo operador después del símbolo
+    // Aquí guardará el segundo operador después del símbolo (1)
     private static String op2 = "";
 
     // Constructor
@@ -58,6 +59,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         for (JButton boton : this.botonera.getgrupoBotones()) {
             boton.addActionListener(this);
         }
+        // Llamara al método para deshabilitar los botones al principio
         botonera.deshabilitarBotones();
     }
 
@@ -67,7 +69,6 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         // Se obtiene el objeto que desencadena el evento
         Object o = ae.getSource();
         // Si es un botón
-//        try{
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
             
@@ -93,7 +94,6 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
                     System.out.println("Operador 1: " + op1);
-                    
 
                 } else {
                     // Si no, guardará la información del simbolos
@@ -170,14 +170,10 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 op2 = "";
                 tipoOperacionDecimales = 0;
                 tipoOperacion = 0;
-                // Y deshabilito los botones para que no vuelvan a aparecer al 
-                // principio
+                // Y deshabilito los botones otra vez para que no vuelvan a 
+                // aparecer al principio
                 botonera.deshabilitarBotones();
             }
-        }
-//        } catch(){
-            
-        }
-
+        }   
     }
-//}
+}
