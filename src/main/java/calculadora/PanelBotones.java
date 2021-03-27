@@ -47,4 +47,16 @@ public class PanelBotones extends JPanel {
     public JButton[] getgrupoBotones() {
         return grupoBotones;
     }
+
+    public void deshabilitarBotones() {
+        grupoBotones[10].setEnabled(false);
+        grupoBotones[12].setEnabled(false);
+        grupoBotones[13].setEnabled(false);
+    }
+
+    public void habilitarBotones() {
+        grupoBotones[10].setEnabled(true);
+        grupoBotones[12].setEnabled(true);
+        grupoBotones[13].setEnabled(true);
+    }
 }

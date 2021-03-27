@@ -58,6 +58,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         for (JButton boton : this.botonera.getgrupoBotones()) {
             boton.addActionListener(this);
         }
+        botonera.deshabilitarBotones();
     }
 
     @Override
@@ -69,7 +70,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 //        try{
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
-
+            
             // Si los botones son simbolos
             if (((JButton) o).getText().equals("+")
                     || ((JButton) o).getText().equals("-")
@@ -92,6 +93,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
                     System.out.println("Operador 1: " + op1);
+                    
 
                 } else {
                     // Si no, guardará la información del simbolos
@@ -112,6 +114,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     op1 += ((JButton) o).getText();
                     areaTexto.setText(op1);
                     System.out.println("Operador 1: " + op1);
+                    // Cuando llegue al operador 1, ya habilitaremos los demás 
+                    // operadores
+                    botonera.habilitarBotones();
                     // Si el simbolo contiene un simbolo, significará que es el 
                     // operador 2
                 } else {
@@ -165,6 +170,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 op2 = "";
                 tipoOperacionDecimales = 0;
                 tipoOperacion = 0;
+                // Y deshabilito los botones para que no vuelvan a aparecer al 
+                // principio
+                botonera.deshabilitarBotones();
             }
         }
 //        } catch(){
