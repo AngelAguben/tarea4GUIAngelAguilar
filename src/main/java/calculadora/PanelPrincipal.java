@@ -121,7 +121,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                     // operador 2
                 } else {
                     op2 += ((JButton) o).getText();
-                    areaTexto.setText(op2);
+                    areaTexto.setText(op1 + simboAux + op2);
                     System.out.println("Operador 2: " + op2);
                 }
 
