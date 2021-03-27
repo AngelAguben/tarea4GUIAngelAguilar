@@ -148,7 +148,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                         break;
                     // IGUAL
                     default:
-                        tipoOperacion= Integer.parseInt(op1);
+                        tipoOperacion = Integer.parseInt(op1);
                         break;
                 }
                 // Una vez terminado el switch hago que me lo imprima todo
@@ -156,20 +156,21 @@ public class PanelPrincipal extends JPanel implements ActionListener {
                 // decimales
 
                 // Si tipoOperacionDecimales es mayor a 0 que es su valor por defecto
-                if (tipoOperacionDecimales > 0) {
+                if (tipoOperacionDecimales > 0 ) {
                     // Imprimirá su número con decimales
                     System.out.println("Resultado: " + tipoOperacionDecimales);
                     areaTexto.setText(tipoOperacionDecimales + "");
                 // Si la división sale un número menor a 0 será porque algún 
                 // número es negativo y lo tendremos que avisar con el SYNTAX ERROR
-                }else if(tipoOperacionDecimales <= 0){
-                    areaTexto.setText("SYNTAX ERROR");
-                    System.out.println("SYNTAX ERROR");
+                }else if((tipoOperacion >= 0 || tipoOperacion <= 0) && tipoOperacionDecimales == 0){
+                    System.out.println("Resultado: " + tipoOperacion);
+                    areaTexto.setText(tipoOperacion + "");
+                    
                 // Si no, mostrará el resultado sin decimales para que sea 
                 // más estético
                 } else {
-                    System.out.println("Resultado: " + tipoOperacion);
-                    areaTexto.setText(tipoOperacion + "");
+                    areaTexto.setText("SYNTAX ERROR");
+                    System.out.println("SYNTAX ERROR");
                 }
                 // Y luego limpiará todo para volver a hacer otra operacion
                 op1 = "";
